@@ -1,0 +1,1 @@
+web:    java -jar target/dependency/webapp-runner.jar --expand-war --port 8080 target/*.war
