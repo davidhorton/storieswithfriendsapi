@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="com.storieswithfriends.api" />
+
+    <context:annotation-config/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://ec2-107-22-190-179.compute-1.amazonaws.com:5432/d25sm4psq2mgp3?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />
+        <property name="username" value="nykkxxopgfcwee" />
+        <property name="password" value="KyKm11bX-LJdsEnRGVqcdfWdZK" />
+    </bean>
+
+    <bean id="storiesDao" class="com.storieswithfriends.api.data.StoriesJdbcDao">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean class="com.storieswithfriends.api.context.SpringApplicationContext"></bean>
+
+    <!--<bean id="restApi" class="com.storieswithfriends.api.StoriesRestAPI">
+        <property name="dao" ref="storiesDao"/>
+    </bean>-->
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- (this dependency is defined somewhere else) -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
