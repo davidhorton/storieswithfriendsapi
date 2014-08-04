@@ -276,15 +276,19 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
      * @param enteredPassword The entered password
      * @return Whether the username and password are correct or not
      */
-    public boolean login(String username, String enteredPassword) {
-        String sql = "SELECT \"Password\" from \"AppUser\" where \"Username\"=?";
+    public User login(String username, String enteredPassword) {
+        String sql = "SELECT * from \"AppUser\" where \"Username\"=?";
 
         boolean valid = false;
+        final User user = new User();
 
         try {
             String password = getJdbcTemplate().queryForObject(sql, new Object[]{username}, new RowMapper<String>() {
                 @Override
                 public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                    user.setUsername(resultSet.getString("Username"));
+                    user.setDisplayName(resultSet.getString("DisplayName"));
+
                     return resultSet.getString("Password");
                 }
             });
@@ -301,7 +305,12 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
             System.out.println("The username does not exist in the database");
         }
 
-        return valid;
+        if(valid) {
+            return user;
+        }
+        else {
+            return null;
+        }
     }
 
     /**

@@ -111,17 +111,9 @@ public class StoriesRestAPI {
     @POST
     @Path("story/login")
     @Consumes("application/x-www-form-urlencoded")
-    public Response login(@FormParam("username") String username, @FormParam("password") String password) {
-        boolean valid = dao.login(username, password);
-
-        String result;
-        if(valid) {
-            result = "Successfully logged in.";
-        }
-        else {
-            result = "Invalid username or password.";
-        }
-        return Response.status(201).entity(result).build();
+    @Produces("application/json")
+    public User login(@FormParam("username") String username, @FormParam("password") String password) {
+        return dao.login(username, password);
     }
 
     /**

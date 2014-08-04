@@ -30,5 +30,5 @@ public interface StoriesDao {
 
     public void finishStory(int storyId);
 
-    public boolean login(String username, String enteredPassword);
+    public User login(String username, String enteredPassword);
 }
