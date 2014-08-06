@@ -137,7 +137,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
         });
 
         final List<Word> words = new ArrayList<>();
-        String sqlToGetWords = "SELECT * from \"Word\" where \"StoryId\"=? order by \"OrderInStory\"";
+        String sqlToGetWords = "SELECT * from \"Word\" where \"StoryId\"=? order by \"OrderInStory\"::int";
         final String sqlToGetMoreWordData = "SELECT * from \"StoryUser\" where \"StoryId\"=? and \"UserId\"=?";
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sqlToGetWords, storyId);
 
