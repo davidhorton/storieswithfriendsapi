@@ -68,7 +68,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
      */
     public void addWordToStory(Word word, int storyId) {
 
-        String sqlToGetNextOrderPosition = "SELECT \"OrderInStory\" from \"Word\" where \"StoryId\"=? order by \"OrderInStory\" DESC LIMIT 1";
+        String sqlToGetNextOrderPosition = "SELECT \"OrderInStory\" from \"Word\" where \"StoryId\"=? order by \"OrderInStory\"::int DESC LIMIT 1";
         int mostRecentWordOrder = 0;
         try {
             mostRecentWordOrder = Integer.parseInt(getJdbcTemplate().queryForObject(sqlToGetNextOrderPosition, new Object[]{storyId}, new RowMapper<String>() {
