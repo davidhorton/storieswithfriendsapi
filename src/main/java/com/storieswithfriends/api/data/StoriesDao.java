@@ -31,4 +31,6 @@ public interface StoriesDao {
     public void finishStory(int storyId);
 
     public User login(String username, String enteredPassword);
+
+    public boolean usernameExists(String username);
 }

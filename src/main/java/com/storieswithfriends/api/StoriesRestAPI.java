@@ -116,6 +116,23 @@ public class StoriesRestAPI {
         return dao.login(username, password);
     }
 
+    @POST
+    @Path("story/usernameexists")
+    @Consumes("application/x-www-form-urlencoded")
+    public Response usernameExists(@FormParam("username") String username) {
+        boolean exists = dao.usernameExists(username);
+
+        String result;
+        if(exists) {
+            result = "true";
+        }
+        else {
+            result = "false";
+        }
+        return Response.status(201).entity(result).build();
+    }
+
+
     /**
      *
      * @param newWord The String of the new word to be added

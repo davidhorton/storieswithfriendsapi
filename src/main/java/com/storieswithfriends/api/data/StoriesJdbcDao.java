@@ -313,6 +313,31 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
         }
     }
 
+    public boolean usernameExists(String username) {
+
+        boolean exists = true;
+
+        String sql = "SELECT \"UserId\" from \"AppUser\" where \"Username\" = ?";
+
+        try {
+            int userId = getJdbcTemplate().queryForObject(sql, new Object[]{username}, new RowMapper<Integer>() {
+                @Override
+                public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                    return resultSet.getInt("UserId");
+                }
+            });
+
+            System.out.println("Foudn user with id of " + userId);
+        }
+        catch(EmptyResultDataAccessException e) {
+            exists = false;
+            e.printStackTrace();
+            System.out.println("The user " + username + " doesn't exist.");
+        }
+
+        return exists;
+    }
+
     /**
      *
      * @param username The username of the user whose Id is wanted
