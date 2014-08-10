@@ -214,7 +214,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
      * @return A list of finished stories that this user was an owner of
      */
     public List<StorySummary> getPastStories(String username) {
-        String sql = "SELECT * from \"Story\" where \"DateFinished\" IS NOT NULL and \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=? and \"IsStoryOwner\"=true)";
+        String sql = "SELECT * from \"Story\" where \"DateFinished\" IS NOT NULL and \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=?)";
 
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql, getUserIdFromUsername(username));
 
@@ -236,7 +236,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
      * @return A list of stories that are unfinished and that this user is an owner of
      */
     public List<StorySummary> getUnfinishedStories(String username) {
-        String sql = "SELECT * from \"Story\" where \"DateFinished\" IS NULL and \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=? and \"IsStoryOwner\"=true)";
+        String sql = "SELECT * from \"Story\" where \"DateFinished\" IS NULL and \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=?)";
         String sqlToGetWhoseTurn = "SELECT \"UserId\" from \"StoryUser\" where \"StoryId\"=? and \"IsMyTurn\"=true";
 
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql, getUserIdFromUsername(username));
