@@ -66,7 +66,7 @@ public class StoriesRestAPI {
 
         //Add the owner as a story participant first
         User owner = story.getOwner();
-        owner.setMyTurn(true);  //It technically is his turn because the word hasn't been added yet. Once it's added, it'll get incremented to the next guy's turn.
+        owner.setIsMyTurn(true);  //It technically is his turn because the word hasn't been added yet. Once it's added, it'll get incremented to the next guy's turn.
         dao.addStoryParticipant(story.getOwner(), newStoryId, 0);
 
         //Add all of the other story participants

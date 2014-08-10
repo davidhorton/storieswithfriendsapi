@@ -121,7 +121,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
     public Story getSpecificStory(final int storyId) {
 
         final Story storyToReturn = new Story();
-        storyToReturn.setAllFinished(false);
+        storyToReturn.setIsAllFinished(false);
 
 
         String sqlToGetStoryData = "SELECT * from \"Story\" where \"StoryId\"=?";
@@ -153,7 +153,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
                 @Override
                 public Object mapRow(ResultSet resultSet, int i) throws SQLException {
                     word.getUserWhoAddedIt().setOrderPosition(resultSet.getInt("OrderPosition"));
-                    word.getUserWhoAddedIt().setMyTurn(resultSet.getBoolean("IsMyTurn"));
+                    word.getUserWhoAddedIt().setIsMyTurn(resultSet.getBoolean("IsMyTurn"));
                     if(word.getUserWhoAddedIt().isMyTurn()) {
                         storyToReturn.setWhoseTurn(word.getUserWhoAddedIt());
                     }
