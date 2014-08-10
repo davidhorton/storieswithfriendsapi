@@ -157,7 +157,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
                     if(word.getUserWhoAddedIt().isMyTurn()) {
                         storyToReturn.setWhoseTurn(word.getUserWhoAddedIt());
                     }
-                    word.getUserWhoAddedIt().setOwner(resultSet.getBoolean("IsStoryOwner"));
+                    word.getUserWhoAddedIt().setIsOwner(resultSet.getBoolean("IsStoryOwner"));
                     if(word.getUserWhoAddedIt().isOwner()) {
                         storyToReturn.setOwner(word.getUserWhoAddedIt());
                     }
