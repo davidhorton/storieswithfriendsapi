@@ -121,7 +121,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
     public Story getSpecificStory(final int storyId) {
 
         final Story storyToReturn = new Story();
-        storyToReturn.setIsAllFinished(false);
+        storyToReturn.setAllFinished(false);
 
 
         String sqlToGetStoryData = "SELECT * from \"Story\" where \"StoryId\"=?";
