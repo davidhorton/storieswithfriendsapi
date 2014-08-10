@@ -39,7 +39,7 @@ public class User {
         return isOwner;
     }
 
-    public void setOwner(boolean isOwner) {
+    public void setIsOwner(boolean isOwner) {
         this.isOwner = isOwner;
     }
 
