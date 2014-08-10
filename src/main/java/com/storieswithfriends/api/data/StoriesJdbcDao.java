@@ -192,7 +192,7 @@ public class StoriesJdbcDao extends JdbcDaoSupport implements StoriesDao {
      */
     public List<StorySummary> getYourTurnStories(String username) {
 
-        String sql = "SELECT * from \"Story\" where \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=? and \"IsMyTurn\"=true)";
+        String sql = "SELECT * from \"Story\" where \"DateFinished\" IS NULL and \"StoryId\" IN (SELECT \"StoryId\" from \"StoryUser\" where \"UserId\"=? and \"IsMyTurn\"=true)";
 
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql, getUserIdFromUsername(username));
 
