@@ -47,7 +47,7 @@ public class User {
         return isMyTurn;
     }
 
-    public void setMyTurn(boolean isMyTurn) {
+    public void setIsMyTurn(boolean isMyTurn) {
         this.isMyTurn = isMyTurn;
     }
 

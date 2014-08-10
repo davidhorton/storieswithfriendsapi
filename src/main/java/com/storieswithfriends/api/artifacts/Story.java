@@ -31,7 +31,7 @@ public class Story {
         return allFinished;
     }
 
-    public void setAllFinished(boolean allFinished) {
+    public void setIsAllFinished(boolean allFinished) {
         this.allFinished = allFinished;
     }
 
